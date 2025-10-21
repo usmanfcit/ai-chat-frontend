@@ -9,26 +9,26 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
 
   return (
     <div
-      className={`flex w-full mb-4 animate-fade-in ${
-        isUser ? 'justify-end' : 'justify-start'
+      className={`flex w-full mb-6 animate-fade-in ${
+        isUser ? 'justify-center' : 'justify-center'
       }`}
     >
       <div
-        className={`max-w-[85%] md:max-w-[75%] rounded-2xl px-5 py-4 shadow-lg ${
+        className={`w-full max-w-[90%] md:max-w-[85%] rounded-3xl px-6 py-5 shadow-2xl transition-all duration-300 hover:shadow-3xl ${
           isUser
-            ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-tr-sm'
-            : 'bg-gradient-to-r from-gray-700 to-gray-800 text-gray-100 rounded-tl-sm'
+            ? 'bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white'
+            : 'bg-gradient-to-br from-gray-700 via-gray-750 to-gray-800 text-gray-50'
         }`}
       >
-        <div className="flex items-start gap-3">
-          <div className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-lg font-semibold">
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-xl bg-white/10 backdrop-blur-sm">
             {isUser ? '👤' : '🤖'}
           </div>
           <div className="flex-1 pt-1">
-            <p className="text-base md:text-lg leading-relaxed whitespace-pre-wrap break-words">
+            <p className="text-base md:text-lg leading-relaxed whitespace-pre-wrap break-words text-center">
               {message.content}
             </p>
-            <p className={`text-xs mt-2 ${isUser ? 'text-blue-100' : 'text-gray-400'}`}>
+            <p className={`text-xs mt-3 text-center ${isUser ? 'text-blue-100' : 'text-gray-300'}`}>
               {new Date(message.timestamp).toLocaleTimeString([], {
                 hour: '2-digit',
                 minute: '2-digit',

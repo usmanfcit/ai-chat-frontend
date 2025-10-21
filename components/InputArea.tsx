@@ -48,8 +48,8 @@ export default function InputArea({ onSendMessage, disabled }: InputAreaProps) {
             placeholder={disabled ? "Waiting for response..." : "Type your message... (Shift+Enter for new line)"}
             disabled={disabled}
             rows={1}
-            className="w-full bg-gray-700 text-white rounded-xl px-5 py-4 pr-12 text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed resize-none max-h-40 overflow-y-auto"
-            style={{ minHeight: '56px' }}
+            className="w-full bg-gradient-to-br from-gray-700 to-gray-800 text-white rounded-2xl px-6 py-4 pr-12 text-base md:text-lg text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed resize-none max-h-40 overflow-y-auto shadow-xl transition-all duration-300"
+            style={{ minHeight: '60px' }}
           />
           <div className="absolute right-3 bottom-3 text-xs text-gray-400">
             {input.length}/2000
@@ -58,7 +58,7 @@ export default function InputArea({ onSendMessage, disabled }: InputAreaProps) {
         <button
           onClick={handleSend}
           disabled={disabled || !input.trim()}
-          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-7 py-4 rounded-xl font-semibold text-base disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl disabled:hover:shadow-lg"
+          className="bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-2xl font-semibold text-base disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center gap-2 shadow-2xl hover:shadow-3xl hover:scale-105 disabled:hover:scale-100 disabled:hover:shadow-2xl"
         >
           <span className="hidden sm:inline">Send</span>
           <svg
