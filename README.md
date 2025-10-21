@@ -1,36 +1,187 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Advisor Chat Frontend
+
+A modern, responsive chat application built with Next.js 15, TypeScript, and Tailwind CSS.
+
+## Features
+
+- 🎨 **Modern UI**: Dark theme with gradient backgrounds and smooth animations
+- 💬 **Real-time Chat**: Interactive chat interface with message history
+- 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
+- ⚡ **Fast Performance**: Built with Next.js 15 App Router and React 19
+- 🔄 **Loading States**: Typing indicators and smooth transitions
+- ❌ **Error Handling**: Graceful error handling with user-friendly messages
+- 🎯 **Type Safe**: Full TypeScript implementation
+- 🔐 **API Proxy**: Secure CORS proxy for external API calls
+
+## Tech Stack
+
+- **Framework**: Next.js 15.5.6
+- **UI Library**: React 19.1.0
+- **Styling**: Tailwind CSS 4
+- **Language**: TypeScript 5
+- **Deployment**: Vercel / Netlify
+
+## Project Structure
+
+```
+ai-chat-frontend/
+├── app/
+│   ├── api/
+│   │   └── chat/
+│   │       └── route.ts          # API proxy endpoint
+│   ├── globals.css                # Global styles
+│   ├── layout.tsx                 # Root layout
+│   └── page.tsx                   # Main chat page
+├── components/
+│   ├── ChatContainer.tsx          # Chat message container
+│   ├── MessageBubble.tsx          # Individual message component
+│   ├── InputArea.tsx              # Message input component
+│   ├── LoadingIndicator.tsx       # Typing animation
+│   └── ErrorMessage.tsx           # Error display component
+├── hooks/
+│   └── useChat.ts                 # Chat logic and state management
+├── types/
+│   └── chat.ts                    # TypeScript interfaces
+├── .env.local                     # Environment variables
+└── package.json                   # Dependencies
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+ and npm/yarn/pnpm
+- An ngrok URL pointing to your AI backend
+
+### Installation
+
+1. Clone the repository or navigate to the project directory:
+   ```bash
+   cd ai-chat-frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   - Copy `.env.local.example` to `.env.local`
+   - Update `NGROK_URL` with your actual ngrok URL:
+     ```
+     NGROK_URL=https://your-ngrok-url.ngrok-free.app
+     ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## API Integration
+
+The application communicates with an external AI API through a proxy endpoint:
+
+### API Route: `/api/chat`
+
+**Request Format:**
+```json
+{
+  "prompt": "Your message here"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Backend API Call:**
+```json
+{
+  "model": "ai-advisor-v0.1-16k",
+  "prompt": "Your message here",
+  "stream": false
+}
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Response Format:**
+```json
+{
+  "response": "AI response text"
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Error Handling
 
-## Learn More
+The API route handles:
+- Missing environment variables
+- Network timeouts (30 seconds)
+- API errors
+- Malformed requests
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Vercel Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push your code to GitHub
+2. Import project in Vercel
+3. Add environment variable:
+   - `NGROK_URL`: Your ngrok URL
+4. Deploy
 
-## Deploy on Vercel
+### Netlify Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push your code to GitHub
+2. Import project in Netlify
+3. Add environment variable:
+   - `NGROK_URL`: Your ngrok URL
+4. Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The `netlify.toml` configuration is already included.
+
+## Customization
+
+### Styling
+
+Modify colors and styles in:
+- `app/globals.css` - Global styles and animations
+- Component files - Tailwind CSS classes
+
+### API Configuration
+
+Update the model or request format in:
+- `app/api/chat/route.ts` - Backend API call configuration
+
+### Components
+
+All components are modular and can be customized:
+- `MessageBubble.tsx` - Message appearance
+- `InputArea.tsx` - Input field behavior
+- `LoadingIndicator.tsx` - Loading animation
+- `ChatContainer.tsx` - Layout and scrolling
+
+## Development
+
+### Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+### Type Safety
+
+The project uses TypeScript interfaces defined in `types/chat.ts` for type safety across components and API calls.
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers
+
+## License
+
+MIT
+
+## Support
+
+For issues or questions, please open an issue in the repository.
