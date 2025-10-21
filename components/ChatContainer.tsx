@@ -30,32 +30,30 @@ export default function ChatContainer({
   return (
     <div
       ref={containerRef}
-      className="flex-1 overflow-y-auto px-4 py-6 space-y-4 flex justify-center"
+      className="flex-1 overflow-y-auto"
       style={{ scrollbarGutter: 'stable' }}
     >
-      <div className="max-w-5xl w-full">
-        {messages.length === 0 && !isLoading && !error && (
-          <div className="flex flex-col items-center justify-center h-full text-center py-12">
-            <div className="text-6xl mb-4">💬</div>
-            <h2 className="text-2xl font-bold text-gray-300 mb-2">
-              Welcome to AI Advisor
-            </h2>
-            <p className="text-gray-400 max-w-md">
-              Start a conversation by typing a message below. I'm here to help answer your questions!
-            </p>
-          </div>
-        )}
+      {messages.length === 0 && !isLoading && !error && (
+        <div className="flex flex-col items-center justify-center h-full text-center px-4 py-12">
+          <div className="text-5xl mb-4">💬</div>
+          <h2 className="text-3xl font-semibold text-gray-200 mb-2">
+            AI Advisor
+          </h2>
+          <p className="text-gray-400 max-w-md text-base">
+            How can I help you today?
+          </p>
+        </div>
+      )}
 
-        {messages.map((message) => (
-          <MessageBubble key={message.id} message={message} />
-        ))}
+      {messages.map((message) => (
+        <MessageBubble key={message.id} message={message} />
+      ))}
 
-        {isLoading && <LoadingIndicator />}
-        
-        {error && <ErrorMessage message={error} onDismiss={onClearError} />}
+      {isLoading && <LoadingIndicator />}
+      
+      {error && <ErrorMessage message={error} onDismiss={onClearError} />}
 
-        <div ref={messagesEndRef} />
-      </div>
+      <div ref={messagesEndRef} />
     </div>
   );
 }
