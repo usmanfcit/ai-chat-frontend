@@ -13,7 +13,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
         isUser ? 'bg-gray-800' : 'bg-gray-850'
       }`}
     >
-      <div className="max-w-3xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-6">
         <div className="flex items-start gap-4">
           <div className={`flex-shrink-0 w-8 h-8 rounded-sm flex items-center justify-center text-lg font-bold ${
             isUser ? 'bg-blue-600 text-white' : 'bg-green-600 text-white'

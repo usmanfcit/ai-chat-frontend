@@ -1,7 +1,7 @@
 export default function LoadingIndicator() {
   return (
     <div className="w-full py-6 bg-gray-850 animate-fade-in">
-      <div className="max-w-3xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-6">
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0 w-8 h-8 rounded-sm flex items-center justify-center text-lg font-bold bg-green-600 text-white">
             AI

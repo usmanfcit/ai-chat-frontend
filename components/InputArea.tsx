@@ -37,29 +37,29 @@ export default function InputArea({ onSendMessage, disabled }: InputAreaProps) {
   }, [input]);
 
   return (
-    <div className="border-t border-gray-700 bg-gray-800 py-4">
-      <div className="max-w-3xl mx-auto px-4">
-        <div className="flex gap-3 items-end">
+    <div className="border-t border-gray-700 bg-gray-800 pt-8 pb-20">
+      <div className="flex justify-center items-center px-8">
+        <div className="flex gap-4 items-center w-full max-w-3xl">
           <textarea
             ref={textareaRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={disabled ? "Waiting for response..." : "Send a message..."}
+            placeholder={disabled ? "Waiting for response..." : "Message AI Advisor..."}
             disabled={disabled}
             rows={1}
-            className="flex-1 bg-gray-700 text-white rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-1 focus:ring-gray-600 disabled:opacity-50 disabled:cursor-not-allowed resize-none max-h-40 overflow-y-auto border border-gray-600"
-            style={{ minHeight: '52px' }}
+            className="flex-1 bg-gray-700 text-white rounded-xl px-5 py-4 text-base text-center focus:outline-none focus:ring-1 focus:ring-gray-600 disabled:opacity-50 disabled:cursor-not-allowed resize-none max-h-40 overflow-y-auto border-2 border-gray-600 placeholder:text-center shadow-sm"
+            style={{ minHeight: '56px' }}
           />
           <button
             onClick={handleSend}
             disabled={disabled || !input.trim()}
-            className="bg-white text-gray-800 hover:bg-gray-200 disabled:bg-gray-600 disabled:text-gray-400 p-3 rounded-lg transition-colors disabled:cursor-not-allowed"
+            className="bg-white text-gray-800 hover:bg-gray-200 disabled:bg-gray-600 disabled:text-gray-400 p-3.5 rounded-xl transition-colors disabled:cursor-not-allowed shadow-sm flex-shrink-0"
             aria-label="Send message"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 transform rotate-90"
               viewBox="0 0 20 20"
               fill="currentColor"
             >

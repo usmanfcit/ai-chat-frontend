@@ -5,14 +5,23 @@ export interface Message {
   timestamp: Date;
 }
 
+export interface OllamaMessage {
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+}
+
 export interface ChatRequest {
   model: string;
-  prompt: string;
-  stream: boolean;
+  messages: OllamaMessage[];
+  stream?: boolean;
 }
 
 export interface ChatResponse {
-  response: string;
+  message: {
+    role: string;
+    content: string;
+  };
+  done: boolean;
 }
 
 export interface ApiError {

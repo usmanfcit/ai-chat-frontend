@@ -4,14 +4,17 @@ A modern, responsive chat application built with Next.js 15, TypeScript, and Tai
 
 ## Features
 
-- 🎨 **Modern UI**: Dark theme with gradient backgrounds and smooth animations
-- 💬 **Real-time Chat**: Interactive chat interface with message history
+- 🎨 **Modern UI**: ChatGPT-style interface with clean, minimalist design
+- 💬 **Conversation Context**: Full conversation history maintained throughout session
+- 🔄 **Context Management**: "New chat" button to reset conversation context
 - 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
 - ⚡ **Fast Performance**: Built with Next.js 15 App Router and React 19
 - 🔄 **Loading States**: Typing indicators and smooth transitions
 - ❌ **Error Handling**: Graceful error handling with user-friendly messages
-- 🎯 **Type Safe**: Full TypeScript implementation
+- 🎯 **Type Safe**: Full TypeScript implementation with Ollama types
 - 🔐 **API Proxy**: Secure CORS proxy for external API calls
+- 📊 **Message Counter**: Visual feedback showing conversation length
+- 💾 **Session Persistence**: Conversation maintained during active session
 
 ## Tech Stack
 
@@ -81,22 +84,30 @@ ai-chat-frontend/
 
 ## API Integration
 
-The application communicates with an external AI API through a proxy endpoint:
+The application communicates with Ollama's `/api/chat` endpoint through a proxy, maintaining full conversation context:
 
 ### API Route: `/api/chat`
 
 **Request Format:**
 ```json
 {
-  "prompt": "Your message here"
+  "messages": [
+    { "role": "user", "content": "Hello!" },
+    { "role": "assistant", "content": "Hi! How can I help?" },
+    { "role": "user", "content": "What's the weather?" }
+  ]
 }
 ```
 
-**Backend API Call:**
+**Backend API Call (to Ollama):**
 ```json
 {
   "model": "ai-advisor-v0.1-16k",
-  "prompt": "Your message here",
+  "messages": [
+    { "role": "user", "content": "Hello!" },
+    { "role": "assistant", "content": "Hi! How can I help?" },
+    { "role": "user", "content": "What's the weather?" }
+  ],
   "stream": false
 }
 ```
@@ -104,17 +115,30 @@ The application communicates with an external AI API through a proxy endpoint:
 **Response Format:**
 ```json
 {
-  "response": "AI response text"
+  "message": {
+    "role": "assistant",
+    "content": "AI response text"
+  },
+  "done": true
 }
 ```
+
+### Conversation Context
+- ✅ Full conversation history sent with each request
+- ✅ AI can reference previous messages
+- ✅ Context maintained throughout session
+- ✅ "New chat" button to reset context
 
 ### Error Handling
 
 The API route handles:
 - Missing environment variables
-- Network timeouts (30 seconds)
+- Network timeouts (60 seconds for longer conversations)
 - API errors
 - Malformed requests
+- Invalid message arrays
+- Response format validation
+- Failed message rollback
 
 ## Deployment
 
@@ -148,6 +172,8 @@ Modify colors and styles in:
 
 Update the model or request format in:
 - `app/api/chat/route.ts` - Backend API call configuration
+- Requires Ollama v0.1.0+ with `/api/chat` endpoint support
+- See `MIGRATION-GUIDE.md` for details on conversation context implementation
 
 ### Components
 
