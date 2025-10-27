@@ -23,7 +23,7 @@ export default function Home() {
         <div className="flex items-center justify-center px-8 py-3 relative">
           {/* AI Advisor - Left Corner */}
           <div className="absolute left-8 flex items-center gap-3">
-            <h1 className="text-lg font-semibold text-white">AI Advisor</h1>
+            <h1 className="text-lg font-semibold text-white">AI Advisor [DEMO]</h1>
             {messages.length > 0 && (
               <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded">
                 {messages.length} {messages.length === 1 ? 'message' : 'messages'}

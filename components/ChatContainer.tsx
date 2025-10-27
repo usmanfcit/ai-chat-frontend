@@ -37,7 +37,7 @@ export default function ChatContainer({
         <div className="flex flex-col items-center justify-center h-full text-center px-4 py-12">
           <div className="text-5xl mb-4">💬</div>
           <h2 className="text-3xl font-semibold text-gray-200 mb-2">
-            AI Advisor
+            AI Advisor (NORA)
           </h2>
           <p className="text-gray-400 max-w-md text-base mb-6">
             How can I help you today?
