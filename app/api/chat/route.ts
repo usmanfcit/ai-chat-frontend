@@ -65,7 +65,6 @@ export async function POST(request: NextRequest) {
 
     // Log language detection and parameters for monitoring
     console.log(`Detected language: ${userLanguage} for message: "${currentUserMessage.substring(0, 50)}..."`);
-    console.log('Using detailed response parameters: temperature=0.8, top_p=0.9, top_k=50, repeat_penalty=1.2, num_predict=800, min_length=250');
 
     // Call the Ollama /api/chat endpoint with full conversation context
     const response = await fetch(`${ngrokUrl}/api/chat`, {
@@ -78,13 +77,12 @@ export async function POST(request: NextRequest) {
         messages: messagesWithSystem,
         stream: false,
         options: {
-          temperature: 0.8,        // Balanced creativity while maintaining coherence
+          temperature: 0.7,        // Balanced creativity while maintaining coherence
           top_p: 0.9,             // Good vocabulary variety without being excessive
           top_k: 50,              // Balanced word choices for natural variation
-          repeat_penalty: 1.2,    // Moderate anti-repetition without being aggressive
+          repeat_penalty: 1.4,    // Moderate anti-repetition without being aggressive
           num_predict: -1,       // Allows longer detailed responses
           num_ctx: 16384,         // Extended context window for better understanding
-          min_length: 250,        // Ensures substantial minimum length
           stop: ["</s>", "[/INST]", "\n\n\n"] // Stop sequences
         }
       }),
