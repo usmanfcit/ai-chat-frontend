@@ -30,10 +30,11 @@ export default function ChatContainer({
   return (
     <div
       ref={containerRef}
-      className="flex-1 overflow-y-auto px-8 py-6"
+      className="flex-1 overflow-y-auto flex justify-center px-8 py-6"
       style={{ scrollbarGutter: 'stable' }}
     >
-      {messages.length === 0 && !isLoading && !error && (
+      <div className="w-full max-w-3xl">
+        {messages.length === 0 && !isLoading && !error && (
         <div className="flex flex-col items-center justify-center h-full text-center px-4 py-12">
           <div className="text-5xl mb-4">💬</div>
           <h2 className="text-3xl font-semibold text-gray-200 mb-2">
@@ -51,15 +52,16 @@ export default function ChatContainer({
         </div>
       )}
 
-      {messages.map((message) => (
-        <MessageBubble key={message.id} message={message} />
-      ))}
+        {messages.map((message) => (
+          <MessageBubble key={message.id} message={message} />
+        ))}
 
-      {isLoading && <LoadingIndicator />}
-      
-      {error && <ErrorMessage message={error} onDismiss={onClearError} />}
+        {isLoading && <LoadingIndicator />}
+        
+        {error && <ErrorMessage message={error} onDismiss={onClearError} />}
 
-      <div ref={messagesEndRef} />
+        <div ref={messagesEndRef} />
+      </div>
     </div>
   );
 }
