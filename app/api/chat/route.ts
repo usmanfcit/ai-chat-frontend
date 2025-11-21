@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'qwen3-f16-v2',
+        model: 'qwen_2056_nora',
         messages: messagesWithSystem,
         stream: false,
         options: {
