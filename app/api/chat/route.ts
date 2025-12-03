@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'qwen_2762_persona_v2',
+        model: 'qwen_2762_persona_v3',
         messages: messages,
         stream: false,
         options: {
